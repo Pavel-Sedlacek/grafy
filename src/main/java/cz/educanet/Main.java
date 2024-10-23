@@ -1,31 +1,50 @@
 package cz.educanet;
 
-import cz.educanet.queue.FIFOQueue;
-import cz.educanet.queue.FasterFIFOQueue;
-import cz.educanet.queue.IQueue;
-import cz.educanet.queue.LIFOQueue;
+import cz.educanet.graph.Graph;
+import cz.educanet.graph.Vertex;
 
-import java.util.LinkedList;
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        IQueue<Integer> q = new FIFOQueue<>();
-        Main.processQueue(q);
+        Graph g = createGraph("Graph A");
 
-        List<Integer> l = new LinkedList<>();
-        LinkedList<Integer> ll = new LinkedList<>();
-
-        while (!q.isEmpty()) {
-            int a = q.dequeue();
-
-            // ..
+        List<Vertex> dfs = g.depthFirstSearch();
+        System.out.println("DSF visited nodes in this order:");
+        for (Vertex vertex: dfs) {
+            System.out.print(vertex.getLabel() + " ");
         }
+        System.out.println();
     }
 
-    static void processQueue(IQueue<Integer> a) {
+    public static Graph createGraph(String name) {
+        Graph g = new Graph(name);
 
+        Vertex a = new Vertex("A");
+        Vertex b = new Vertex("B");
+        Vertex c = new Vertex("C");
+        Vertex d = new Vertex("D");
+        Vertex e = new Vertex("E");
+
+        g.addVertex(a);
+        g.addVertex(b);
+        g.addVertex(c);
+        g.addVertex(d);
+        g.addVertex(e);
+
+        a.addNeighbour(b);
+        b.addNeighbour(a);
+
+        a.addNeighbour(c);
+        c.addNeighbour(a);
+
+        c.addNeighbour(b);
+        b.addNeighbour(c);
+
+        c.addNeighbour(d);
+        d.addNeighbour(c);
+
+        return g;
     }
 }
+

@@ -2,6 +2,10 @@ package cz.educanet.queue;
 
 import java.util.ArrayList;
 
+/**
+ * A naive FIFO queue implementation, much better interface and
+ * performance is provided by [ArrayList] class
+ */
 public class FIFOQueue<T> implements IQueue<T> {
 
     private ArrayList<T> data = new ArrayList<>();

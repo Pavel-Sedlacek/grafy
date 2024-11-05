@@ -2,8 +2,7 @@ package cz.educanet.graph;
 
 import cz.educanet.queue.LIFOQueue;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Graph
@@ -45,29 +44,33 @@ public class Graph {
      */
     public List<Vertex> depthFirstSearch() {
         // LIFO queue used to implement the DFS
-        LIFOQueue<Vertex> queue = new LIFOQueue<>();
 
-        // Enqueue (insert) the first element from
-        // where the DFS begins
-        queue.enqueue(vertices.getFirst());
+        // Enqueue (insert) all elements from the graph
+        Deque<Vertex> queue = new ArrayDeque<>(vertices.reversed());
+        List<Vertex> nodes = new LinkedList<>();
+        Set<Vertex> visited = new HashSet<>();
 
         // Until the queue is empty
         while (!queue.isEmpty()) {
             // Get next vertex to visit
-            Vertex current = queue.dequeue();
-            // Print its name
-            System.out.println("Jsem " + current);
+            Vertex current = queue.pop();
+
+            // If this node is in the visited set, skip it
+            if (visited.contains(current)) { continue; }
+            // Add it to the walk list and set it as visited
+            nodes.add(current);
+            visited.add(current);
 
             // Get all neighbours
             List<Vertex> neighbours = current.getNeighbours();
             // a shorthand for:  `for (int j = 0; j < neighbours.size(); j++)`
             for (Vertex neighbour : neighbours) {
-                // And print their name
-                System.out.println("  > a mám souseda " + neighbour);
+                // And add it to the queue
+                queue.push(neighbour);
             }
         }
 
         // Return the list
-        return null;
+        return nodes;
     }
 }

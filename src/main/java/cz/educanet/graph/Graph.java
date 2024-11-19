@@ -1,6 +1,7 @@
 package cz.educanet.graph;
 
 import cz.educanet.queue.LIFOQueue;
+import cz.educanet.queue.PriorityQueue;
 
 import java.util.*;
 
@@ -72,5 +73,29 @@ public class Graph {
 
         // Return the list
         return nodes;
+    }
+
+
+    /**
+     * Dijkstra algorithm implementation
+     *
+     * @param from origin label from which to begin the search
+     * @param to target lebel to which we want to find the path
+     *
+     * @return the list of vertices visited
+     */
+    public List<Vertex> dijkstra(String from, String to) {
+        PriorityQueue<Vertex> queue = new PriorityQueue<>();
+
+
+        this.vertices.stream().filter((v) -> v.getLabel().equals(from)).forEach((v) -> {
+            queue.push(0, v);
+        });
+
+        while(!queue.isEmpty()) {
+
+        }
+
+        return null;
     }
 }

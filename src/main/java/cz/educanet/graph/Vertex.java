@@ -1,7 +1,9 @@
 package cz.educanet.graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A structure describing a node/vertex in a graph.
@@ -13,6 +15,7 @@ public class Vertex {
 
     // List of neighbouring vertices
     private final List<Vertex> neighbors;
+    private final Map<Vertex, Integer> weights;
 
     /**
      * Construct new vertex with given label
@@ -21,15 +24,17 @@ public class Vertex {
     public Vertex(String label) {
         this.label = label;
         this.neighbors = new ArrayList<>();
+        this.weights = new HashMap<>();
     }
 
     /**
-     * @param other the other vertex we want to connect
      *
-     * Define a new neighbour of this vertex
+     * @param other
+     * @param weight
      */
-    public void addNeighbour(Vertex other) {
+    public void addNeighbour(Vertex other,int weight) {
         this.neighbors.add(other);
+        this.weights.put(other, weight);
     }
 
     /**
@@ -37,6 +42,13 @@ public class Vertex {
      */
     public List<Vertex> getNeighbours() {
         return neighbors;
+    }
+
+    /**
+     * @return all neighbouring vertices weights
+     */
+    public Map<Vertex, Integer> getWeights() {
+        return weights;
     }
 
     /**

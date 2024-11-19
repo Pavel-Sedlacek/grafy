@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         Graph g = createGraph("Graph A");
 
-        List<Vertex> dfs = g.depthFirstSearch();
+        List<Vertex> dijstra = g.dijkstra("A", "D");
         System.out.println("DSF visited nodes in this order:");
-        for (Vertex vertex: dfs) {
+        for (Vertex vertex: dijstra) {
             System.out.print(vertex.getLabel() + " ");
         }
         System.out.println();
@@ -32,19 +32,23 @@ public class Main {
         g.addVertex(d);
         g.addVertex(e);
 
-        a.addNeighbour(b);
-        b.addNeighbour(a);
+        a.addNeighbour(b, 3);
+        b.addNeighbour(a, 3);
 
-        a.addNeighbour(c);
-        c.addNeighbour(a);
+        a.addNeighbour(c,2);
+        c.addNeighbour(a,2);
 
-        c.addNeighbour(b);
-        b.addNeighbour(c);
+        c.addNeighbour(b,1);
+        b.addNeighbour(c,1);
 
-        c.addNeighbour(d);
-        d.addNeighbour(c);
+        c.addNeighbour(d,4);
+        d.addNeighbour(c,4);
 
+        b.addNeighbour(e,7);
+        e.addNeighbour(b,7);
         return g;
+
+
     }
 }
 

@@ -40,4 +40,6 @@ public class PriorityQueue<T> {
         return queue.removeFirst().element;
     }
 
+    public boolean isEmpty() { return this.queue.isEmpty(); }
+
 }

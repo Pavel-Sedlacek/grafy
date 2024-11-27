@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) {
         Graph g = createGraph("Graph A");
 
-        List<Vertex> dijstra = g.dijkstra("A", "D");
-        System.out.println("DSF visited nodes in this order:");
-        for (Vertex vertex: dijstra) {
+        List<Vertex> dijkstra = g.dijkstra("A", "D");
+        System.out.println("Dijkstra visited nodes in this order:");
+        for (Vertex vertex: dijkstra) {
             System.out.print(vertex.getLabel() + " ");
         }
         System.out.println();
@@ -38,14 +38,14 @@ public class Main {
         a.addNeighbour(c,2);
         c.addNeighbour(a,2);
 
-        c.addNeighbour(b,1);
-        b.addNeighbour(c,1);
+        c.addNeighbour(b,20);
+        b.addNeighbour(c,20);
 
-        c.addNeighbour(d,4);
-        d.addNeighbour(c,4);
+        c.addNeighbour(d,21);
+        d.addNeighbour(c,21);
 
-        b.addNeighbour(e,7);
-        e.addNeighbour(b,7);
+        b.addNeighbour(d,1);
+        d.addNeighbour(b,1);
         return g;
 
 
